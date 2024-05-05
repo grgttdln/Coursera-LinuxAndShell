@@ -40,19 +40,19 @@ backupFileName="backup-$currentTS.tar.gz"
 origAbsPath=$(pwd)
 
 # [TASK 6]
-cd "${destinationDirectory}" || exit 1
+cd $destinationDirectory
 destDirAbsPath=$(pwd)
 
 # [TASK 7]
-cd origAbsPath
-cd targetDirectory
+cd $origAbsPath
+cd $targetDirectory
 
 # [TASK 8]
 yesterdayTS=$(($currentTS - 24 * 60 * 60))
 
 declare -a toBackup
 
-for file in "$targetDirectory"/*; 
+for file in $(ls) 
 do
   # [TASK 10]
   if ((`date -r $file +%s` > $yesterdayTS))
